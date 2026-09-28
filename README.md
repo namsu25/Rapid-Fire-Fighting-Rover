@@ -49,17 +49,6 @@ The rover uses an Arduino microcontroller and three IR flame sensors to detect t
 7. Calibrate sensor sensitivity and tune movement/spray behavior.
 8. Verify safe operation of the pump and extinguishing mechanism.
 
-## Build Log
-
-- **Week 1** — Scoped the project, chose Arduino as the controller, and listed required components.
-- **Week 2** — Sourced sensors, motors, and chassis material; set up the Arduino IDE and began learning the basics.
-- **Week 3** — Waited on parts; researched chassis materials (wood, acrylic, sheet metal).
-- **Week 4** — Settled on 3 IR flame sensors (front/left/right) and worked out the detect-and-turn logic.
-- **Week 5** — Assembled the rover on a wooden chassis with 4 motors; wrote and ran the first working sketch.
-- **Week 6** — Debugged turning radius and a pump-not-firing issue, traced to the power supply to the relay/servo/pump.
-- **Week 7** — Switched from Arduino Nano to Uno; replaced the two front drive motors with a caster wheel.
-- **Week 8** — Rebuilt as a 3-wheel design (2 driven wheels + caster); fixed the rover driving through the flame instead of stopping at it. Project completed.
-
 ## Final Outcome
 
 A functional Arduino-based rover that detects flame with three IR sensors, navigates toward the fire source, and suppresses it with a servo-swept water spray — a working demonstration of low-cost autonomous fire response.
