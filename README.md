@@ -1,36 +1,72 @@
 # Rapid Fire Fighting Rover
 
-An Arduino Uno-based autonomous rover that detects fire using IR flame sensors and extinguishes it with a servo-mounted water spray.
+An Arduino Uno-based rover that detects fire with IR flame sensors and extinguishes it with a servo-mounted water spray.
 
 ![Rover](images/rover.jpg)
 
-## Overview
+## Abstract
 
-The rover uses three IR flame sensors (front, left, right) to scan its surroundings for fire. When a sensor detects flame, the rover turns toward it or, if the fire is directly ahead, stops and sweeps a servo-mounted nozzle while a relay-driven pump sprays water until the flame is out.
+This project presents the design and development of an Arduino-based fire extinguisher rover for autonomous fire suppression in indoor environments. The rover integrates sensors for fire detection and navigation, along with a fire-extinguishing mechanism controlled by an Arduino microcontroller. Testing demonstrated the rover reliably detecting and extinguishing small, localized fires.
+
+## Introduction
+
+The rover uses an Arduino microcontroller and three IR flame sensors to detect the presence of flame. Once fire is detected, it moves toward the source and activates a water-spray mechanism to suppress it — a practical, low-cost application of Arduino to fire safety.
+
+## Circuit Diagram
+
+![Circuit diagram](images/circuit-diagram.png)
 
 ## Components
 
-- Arduino Uno
-- 3x IR flame sensor modules (LM393 comparator output)
-- L298N-style dual H-bridge motor driver
-- 2x DC gear motors + 1 caster wheel (3-wheel drivetrain)
-- SG90 (or similar) micro servo for nozzle sweep
-- 5V relay module driving a small water pump
-- LM2596 DC-DC buck converter for regulated power
-- 3.7V Li-ion battery pack
-- Wooden chassis, tubing, and a water reservoir
+| Component | Purpose |
+|---|---|
+| Arduino Uno | Main controller |
+| 3x IR flame sensors (LM393) | Fire detection (front, left, right) |
+| L298N dual H-bridge motor driver | Drives the two motors |
+| 2x DC gear motors + caster wheel | 3-wheel drivetrain |
+| SG90 micro servo | Sweeps the nozzle across the flame |
+| 5V relay module | Switches the water pump |
+| DC water pump | Sprays water on the fire |
+| LM2596 buck converter | Regulated power for logic/servo |
+| 3.7V Li-ion battery | Power source |
+| Wooden chassis, tubing, reservoir | Structure and water delivery |
 
 ## How It Works
 
 1. The rover drives forward while continuously polling the three flame sensors.
-2. If the **front** sensor detects fire, the rover stops, activates the pump, and sweeps the servo across the flame until the sensor clears.
+2. If the **front** sensor detects fire, it stops, activates the pump, and sweeps the servo-mounted nozzle back and forth until the flame clears.
 3. If the **left** or **right** sensor detects fire, the rover turns briefly toward that side.
-4. Once a fire is extinguished, the rover backs away and resumes scanning.
+4. Once a fire is out, the rover backs away and resumes scanning.
+
+## Methodology
+
+1. Define objectives — detect and extinguish small fires autonomously.
+2. Select components — Arduino board, flame sensors, motors, servo, pump, relay, buck converter.
+3. Design the circuit connecting all components.
+4. Write the Arduino sketch for fire detection, movement, and pump/servo control.
+5. Test each subsystem individually, then integrate.
+6. Assemble the chassis, motors, and wiring.
+7. Calibrate sensor sensitivity and tune movement/spray behavior.
+8. Verify safe operation of the pump and extinguishing mechanism.
+
+## Build Log
+
+- **Week 1** — Scoped the project, chose Arduino as the controller, and listed required components.
+- **Week 2** — Sourced sensors, motors, and chassis material; set up the Arduino IDE and began learning the basics.
+- **Week 3** — Waited on parts; researched chassis materials (wood, acrylic, sheet metal).
+- **Week 4** — Settled on 3 IR flame sensors (front/left/right) and worked out the detect-and-turn logic.
+- **Week 5** — Assembled the rover on a wooden chassis with 4 motors; wrote and ran the first working sketch.
+- **Week 6** — Debugged turning radius and a pump-not-firing issue, traced to the power supply to the relay/servo/pump.
+- **Week 7** — Switched from Arduino Nano to Uno; replaced the two front drive motors with a caster wheel.
+- **Week 8** — Rebuilt as a 3-wheel design (2 driven wheels + caster); fixed the rover driving through the flame instead of stopping at it. Project completed.
+
+## Final Outcome
+
+A functional Arduino-based rover that detects flame with three IR sensors, navigates toward the fire source, and suppresses it with a servo-swept water spray — a working demonstration of low-cost autonomous fire response.
 
 ## Files
 
 - [`Fire_Fighting_Robot.ino`](Fire_Fighting_Robot.ino) — Arduino sketch controlling sensors, motors, servo, and pump.
-- [`docs/final_report.docx`](docs/final_report.docx) — Full project report, including methodology, build log, and component list.
 
 ## Author
 
